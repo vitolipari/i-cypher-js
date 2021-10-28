@@ -1,9 +1,9 @@
 /**
 iCypher
  Algoritmo di cifratura a chiave simmetrica
- 
- 
- 
+
+
+
  */
 
 import {
@@ -36,16 +36,17 @@ export const iCypherInfo = () => {
  * @param pwd
  * @returns {Promise<any | never>}
  */
-export const iCypherLightEncrypt = (data, pwd, options, ...params) => {
-	
+export const iCypherEncrypt = (data, pwd, options, ...params) => {
+
 	return (
 		Promise.resolve()
-			
+
 			// preparing ---------------------------------------------------------------------------------------------------
 			.then( () =>{
-				
-				let clearBytes  = Uint8Array.from( data );
-				
+
+				// let clearBytes  = Uint8Array.from( data );
+				let clearBytes  = convert( data, bytesEncodeTypes.UINT8ARRAY );
+
 				let pwdBytes = [];
 				if( !!options && !!options.isKeyBytes ) {
 					pwdBytes = pwd;
@@ -53,105 +54,98 @@ export const iCypherLightEncrypt = (data, pwd, options, ...params) => {
 				else {
 					pwdBytes    = convert( pwd, bytesEncodeTypes.UINT8ARRAY );
 				}
-				
-				
+
+
 				showlog("preparing");
-				
+
 				showlog("clear bytes");
 				showlog( clearBytes );
-				
+
 				showlog("pwd bytes");
 				showlog(pwdBytes)
-				
-				
+
+
 				return ({
 					clear: clearBytes,
 					pwd: pwdBytes
 				});
-				
+
 			})
-			
+
 			// digest ------------------------------------------------------------------------------------------------------
 			.then( ({clear, pwd}) => {
-				
+
 				let data =
-					Array.from(
-						clear
-							// TODO
-							// .map( (byte, i) => byte ^ pwd[(i % pwd.length)] )
-					)
+					clear
+						.map( (byte, i) => byte ^ ( i % 0xFF ) ^ pwd[(i % pwd.length)] )
 				;
-				
-				
+
 				showlog("digest");
 				showlog( data );
-				
+
 				return data;
-				
+
 			})
-			
-			
+
+
 			// finish ------------------------------------------------------------------------------------------------------
 			.then( data => {
-				
-				
+
+
 				let content = new Uint8Array( data.length );
 				content.set(data, 0);
 				let digest = convert( content, { from: bytesEncodeTypes.UINT8ARRAY, to: bytesEncodeTypes.BASE64 });
-				
+
 				showlog("finish");
-				
+
 				showlog("digest");
 				showlog( digest );
-				
-				
+
+
 				return digest;
-				
+
 			})
-	
+
 	);
-	
-	
+
+
 };
 
 
 
-export const iCypherLightDecrypt = (digest, pwd) => {
-	
+export const iCypherDecrypt = (digest, pwd) => {
+
 	return (
 		Promise.resolve()
-			
+
 			// preparing ---------------------------------------------------------------------------------------------------
 			.then(() => {
-				
+
 				let digestByte = convert( digest, {from: bytesEncodeTypes.BASE64} );
 				let pwdBytes    = convert( pwd );
-				
+
 				return ({
 					digestByte: digestByte,
 					pwdBytes: pwdBytes
 				});
-				
+
 			})
-			
-			
+
+
 			// clearing ---------------------------------------------------------------------------------------------------
 			.then(({ digestByte, pwdBytes }) => {
-				
+
 				let data =
-					Array.from(
-						digestByte
-							// TODO
-							// .map( (byte, i) => byte ^ pwdBytes[(i % pwd.length)] )
-					)
+					digestByte
+						.map( (byte, i) => byte ^ ( i % 0xFF ) ^ pwdBytes[(i % pwd.length)] )
 				;
-				
+
 				return data;
-				
+
 			})
-	
+
 	);
-	
+
 };
 
 
