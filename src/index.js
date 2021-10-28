@@ -122,7 +122,13 @@ export const iCypherDecrypt = (digest, pwd) => {
 			.then(() => {
 
 				let digestByte = convert( digest, {from: bytesEncodeTypes.BASE64} );
-				let pwdBytes    = convert( pwd );
+				let pwdBytes = [];
+				if( !!options && !!options.isKeyBytes ) {
+					pwdBytes = pwd;
+				}
+				else {
+					pwdBytes    = convert( pwd, bytesEncodeTypes.UINT8ARRAY );
+				}
 
 				return ({
 					digestByte: digestByte,
