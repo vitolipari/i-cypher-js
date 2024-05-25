@@ -1,6 +1,6 @@
 {
-  "name": "i-cypher",
-  "version": "1.0.0",
+  "name": "@liparistudios/secure/i-cypher",
+  "version": "1.1.1",
   "description": "",
   "main": "src/index.js",
   "type": "module",
@@ -8,7 +8,7 @@
     "test": "node --experimental-specifier-resolution=node ./src/test/test.js"
   },
   "devDependencies": {
-    "@liparistudios/js-utils": "file:/Users/vitolipari/job/LipariStudios/packages-libraries-frameworks/js/@liparistudios/js-utils"
+    "@liparistudios/js-utils": "git+https://vitolipari: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@github.com/vitolipari/js-utils.git"
   },
   "repository": {
     "type": "git",
