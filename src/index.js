@@ -77,7 +77,8 @@ export const iCypherEncrypt = (data, pwd, options, ...params) => {
 
 				let data =
 					clear
-						.map( (byte, i) => byte ^ ( i % 0xFF ) ^ pwd[(i % pwd.length)] )
+						// .map( (byte, i) => byte ^ ( i % 0xFF ) ^ pwd[(i % pwd.length)] )
+						.map( (byte, i) => byte ^ pwd[(i % pwd.length)] )
 				;
 
 				showlog("digest");
@@ -148,7 +149,8 @@ export const iCypherDecrypt = (digest, pwd, options) => {
 
 				let data =
 					digestByte
-						.map( (byte, i) => byte ^ ( i % 0xFF ) ^ pwdBytes[(i % pwd.length)] )
+						// .map( (byte, i) => byte ^ ( i % 0xFF ) ^ pwdBytes[(i % pwd.length)] )
+						.map( (byte, i) => byte ^ pwdBytes[(i % pwd.length)] )
 				;
 
 				return data;
