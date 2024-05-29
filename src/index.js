@@ -54,15 +54,17 @@ export const iCypherEncrypt = (data, pwd, options, ...params) => {
 				else {
 					pwdBytes    = convert( pwd, bytesEncodeTypes.UINT8ARRAY );
 				}
-
-
-				showlog("preparing");
-
-				showlog("clear bytes");
-				showlog( clearBytes );
-
-				showlog("pwd bytes");
-				showlog(pwdBytes)
+				
+				
+				if( !!options && !!options.debug ) {
+					showlog("preparing");
+	
+					showlog("clear bytes");
+					showlog( clearBytes );
+	
+					showlog("pwd bytes");
+					showlog(pwdBytes)
+				}
 
 
 				return ({
@@ -80,9 +82,11 @@ export const iCypherEncrypt = (data, pwd, options, ...params) => {
 						// .map( (byte, i) => byte ^ ( i % 0xFF ) ^ pwd[(i % pwd.length)] )
 						.map( (byte, i) => byte ^ pwd[(i % pwd.length)] )
 				;
-
-				showlog("digest");
-				showlog( data );
+				
+				if( !!options && !!options.debug ) {
+					showlog("digest");
+					showlog(data);
+				}
 
 				return data;
 
@@ -101,11 +105,13 @@ export const iCypherEncrypt = (data, pwd, options, ...params) => {
 				}
 				
 				let digest = convert( content, { from: bytesEncodeTypes.UINT8ARRAY, to: bytesEncodeTypes.BASE64 });
-
-				showlog("finish");
-
-				showlog("digest");
-				showlog( digest );
+				
+				if( !!options && !!options.debug ) {
+					showlog("finish");
+					
+					showlog("digest");
+					showlog(digest);
+				}
 
 
 				return digest;
