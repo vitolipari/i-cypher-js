@@ -94,6 +94,11 @@ export const iCypherEncrypt = (data, pwd, options, ...params) => {
 
 				let content = new Uint8Array( data.length );
 				content.set(data, 0);
+				
+				if( !!options && !!options.outputType && (options.outputType.trim().toUpperCase() === 'UINT8ARRAY') ) {
+					return content;
+				}
+				
 				let digest = convert( content, { from: bytesEncodeTypes.UINT8ARRAY, to: bytesEncodeTypes.BASE64 });
 
 				showlog("finish");
