@@ -118,7 +118,7 @@ export const iCypherEncrypt = (data, pwd, options, ...params) => {
 
 
 
-export const iCypherDecrypt = (digest, pwd) => {
+export const iCypherDecrypt = (digest, pwd, options) => {
 
 	return (
 		Promise.resolve()
