@@ -10,7 +10,7 @@ import {
 	showlog
 	, convert
 	, bytesEncodeTypes
-} from "@liparistudios/js-utils" assert {type: 'json'};
+} from "@liparistudios/js-utils";
 import packageJson from "../package.json" assert {type: 'json'};
 
 const isDebug = true;
