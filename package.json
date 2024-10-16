@@ -1,6 +1,6 @@
 {
   "name": "@liparistudios/i-cypher",
-  "version": "2.1.0",
+  "version": "2.2.1",
   "description": "",
   "main": "src/index.js",
   "type": "module",
@@ -20,6 +20,5 @@
   "bugs": {
     "url": "https://github.com/vitolipari/i-cypher-js/issues"
   },
-  "type": "module",
   "homepage": "https://github.com/vitolipari/i-cypher-js#readme"
 }
