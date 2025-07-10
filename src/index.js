@@ -11,7 +11,7 @@ import {
 	, convert
 	, bytesEncodeTypes
 } from "@liparistudios/js-utils";
-import packageJson from "../package.json"; // assert {type: 'json'};
+import packageJson from "../package.json" assert {type: 'json'};
 
 const isDebug = true;
 
