@@ -11,7 +11,7 @@ import {
 	, convert
 	, bytesEncodeTypes
 } from "@liparistudios/js-utils";
-import packageJson from "../package.json" assert {type: 'json'};
+// import packageJson from "../package.json" assert {type: 'json'};
 
 const isDebug = true;
 
@@ -22,8 +22,8 @@ const isDebug = true;
  */
 export const iCypherInfo = () => {
 	return ({
-		name: packageJson.name,
-		version: packageJson.version
+		name: '@liparistudios/i-cypher',
+		version: '2.2.4'
 	});
 };
 
