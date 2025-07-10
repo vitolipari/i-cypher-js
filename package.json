@@ -8,7 +8,7 @@
     "test": "node --experimental-specifier-resolution=node ./src/test/test.js"
   },
   "dependencies": {
-    "@liparistudios/js-utils": "git+https://vitolipari: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@github.com/vitolipari/js-utils.git",
+    "@liparistudios/js-utils": "git+https://github.com/vitolipari/js-utils.git#master",
     "esm": "3.2.25"
   },
   "repository": {
